@@ -9,7 +9,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -26,10 +26,13 @@
 | it contains. The "web" middleware group is defined in your HTTP
 | kernel and includes session state, CSRF protection, and more.
 |
-*/
+ */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', 'FacebookController@getLogin');
-Route::get('/fbcallback', 'FacebookController@fbcallback');
+	Route::get('/', 'HomeController@index');
+	Route::get('/fbcallback', 'FacebookController@fbcallback');
+});
 
+Route::group(['middleware' => ['web']], function () {
+	Route::get('/logout', 'FacebookController@logout');
 });
